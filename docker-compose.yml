@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    build: ./backend
+    build: ./feedback_intelligence
     ports:
       - "8000:8000"
     environment:
@@ -10,8 +10,8 @@ services:
       - ENVIRONMENT=production
       - DATABASE_URL=sqlite:///feedback.db
     volumes:
-      - ./backend/feedback.db:/app/feedback.db
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      - ./feedback_intelligence/feedback.db:/app/feedback.db
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s

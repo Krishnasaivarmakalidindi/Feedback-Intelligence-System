@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAIAnalysis, getExecutiveSummary, getActionItems } from '../api/insights';
-import { Card, Badge } from '../components/DesignSystem';
+import { Card, Badge, renderMarkdown } from '../components/DesignSystem';
 import { SkeletonChart } from '../components/SkeletonLoader';
 import {
   SparklesIcon,
@@ -132,7 +132,7 @@ const AIInsights = () => {
       <div className="flex justify-between items-center border-b border-zinc-900 pb-4">
         <div>
           <h2 className="text-base font-bold text-zinc-100 flex items-center gap-2">
-            <SparklesIcon className="w-4.5 h-4.5 text-indigo-400 inline" />
+            <SparklesIcon className="w-5 h-5 text-indigo-400 inline" />
             AI Intelligence Suite
           </h2>
           <p className="text-xs text-zinc-500 mt-0.5">Automated root-cause analysis and prioritized recommendations.</p>
@@ -191,8 +191,8 @@ const AIInsights = () => {
                 </div>
               </div>
 
-              <div className="text-zinc-300 text-xs leading-relaxed leading-loose whitespace-pre-wrap font-sans">
-                {summary || 'Executive summary parsing...'}
+              <div className="text-zinc-300 text-xs leading-relaxed font-sans space-y-2">
+                {summary ? renderMarkdown(summary) : 'Executive summary briefing parsing...'}
               </div>
             </div>
           </div>
@@ -206,9 +206,9 @@ const AIInsights = () => {
                 <WrenchScrewdriverIcon className="w-4 h-4 text-indigo-400" />
                 <h4 className="text-xs font-semibold uppercase tracking-wider">Operational Root Causes</h4>
               </div>
-              <p className="text-zinc-400 text-xs leading-relaxed font-sans whitespace-pre-wrap">
-                {insights ? insights.split('\n\n')[0] || insights : 'Analyzing technical root causes...'}
-              </p>
+              <div className="text-zinc-400 text-xs leading-relaxed font-sans space-y-2">
+                {insights ? renderMarkdown(insights.split('\n\n')[0] || insights) : 'Analyzing technical root causes...'}
+              </div>
             </Card>
 
             {/* Pain Points */}
@@ -217,9 +217,9 @@ const AIInsights = () => {
                 <CpuChipIcon className="w-4 h-4 text-indigo-400" />
                 <h4 className="text-xs font-semibold uppercase tracking-wider">Customer Pain Points</h4>
               </div>
-              <p className="text-zinc-400 text-xs leading-relaxed font-sans whitespace-pre-wrap">
-                {insights ? insights.split('\n\n')[1] || 'Focusing on checkout latency complaints, settings page save errors, and tablet navigation breakpoints.' : 'Aggregating ticket complaints...'}
-              </p>
+              <div className="text-zinc-400 text-xs leading-relaxed font-sans space-y-2">
+                {insights ? renderMarkdown(insights.split('\n\n')[1] || 'Focusing on checkout latency complaints, settings page save errors, and tablet navigation breakpoints.') : 'Aggregating ticket complaints...'}
+              </div>
             </Card>
 
             {/* Opportunities */}
@@ -228,16 +228,16 @@ const AIInsights = () => {
                 <LightBulbIcon className="w-4 h-4 text-indigo-400" />
                 <h4 className="text-xs font-semibold uppercase tracking-wider">Strategic Opportunities</h4>
               </div>
-              <p className="text-zinc-400 text-xs leading-relaxed font-sans whitespace-pre-wrap">
-                {insights ? insights.split('\n\n')[2] || 'Opportunities include introducing mobile checkout payment shortcuts and edge function database caching.' : 'Extracting feature requests...'}
-              </p>
+              <div className="text-zinc-400 text-xs leading-relaxed font-sans space-y-2">
+                {insights ? renderMarkdown(insights.split('\n\n')[2] || 'Opportunities include introducing mobile checkout payment shortcuts and edge function database caching.') : 'Extracting feature requests...'}
+              </div>
             </Card>
 
             {/* Recommendations checklist */}
             <Card className="p-6 flex flex-col justify-between">
               <div>
                 <div className="flex items-center space-x-2 border-b border-zinc-800 pb-3 mb-4 text-zinc-200">
-                  <CheckCircleIcon className="w-4.5 h-4.5 text-indigo-400" />
+                  <CheckCircleIcon className="w-4 h-4 text-indigo-400" />
                   <h4 className="text-xs font-semibold uppercase tracking-wider">Action Items</h4>
                 </div>
 
@@ -256,7 +256,7 @@ const AIInsights = () => {
                       >
                         <div className="mt-0.5 flex-shrink-0">
                           {isChecked ? (
-                            <CheckCircleIcon className="w-4.5 h-4.5 text-emerald-500" />
+                            <CheckCircleIcon className="w-4 h-4 text-emerald-500" />
                           ) : (
                             <div className="w-3.5 h-3.5 rounded border border-zinc-700 mt-0.5" />
                           )}

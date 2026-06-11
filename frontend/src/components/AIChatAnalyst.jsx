@@ -7,6 +7,7 @@ import {
   PaperAirplaneIcon,
   ArrowPathIcon
 } from '@heroicons/react/24/outline';
+import { renderMarkdown } from './DesignSystem';
 
 export const AIChatAnalyst = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -130,10 +131,10 @@ export const AIChatAnalyst = () => {
                   className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-xs leading-relaxed ${
                     m.role === 'user'
                       ? 'bg-indigo-600 text-white font-medium'
-                      : 'bg-zinc-950 border border-zinc-800 text-zinc-200 font-sans whitespace-pre-line'
+                      : 'bg-zinc-950 border border-zinc-800 text-zinc-200 font-sans space-y-2'
                   }`}
                 >
-                  {m.text}
+                  {m.role === 'user' ? m.text : renderMarkdown(m.text)}
                 </div>
               </div>
             ))}

@@ -5,7 +5,7 @@ import client from '../api/client';
 import { getDashboardOverview, getSentimentTimeline } from '../api/dashboard';
 import { listFeedback } from '../api/feedback';
 import { getExecutiveSummary } from '../api/insights';
-import { Card, Badge, ChartContainer } from '../components/DesignSystem';
+import { Card, Badge, ChartContainer, renderMarkdown } from '../components/DesignSystem';
 import Sparkline from '../components/Sparkline';
 import { SkeletonCard, SkeletonChart, SkeletonTable } from '../components/SkeletonLoader';
 import EmptyState from '../components/EmptyState';
@@ -222,7 +222,7 @@ const Dashboard = ({ onTriggerTour }) => {
             className="inline-flex items-center px-3 py-2 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-zinc-200 rounded-lg text-xs font-semibold tracking-wide transition-colors"
           >
             <PlayIcon className="w-3.5 h-3.5 mr-2 text-indigo-400" />
-            Guided Tour
+            Interactive Walkthrough
           </button>
           <select
             value={days}
@@ -323,14 +323,14 @@ const Dashboard = ({ onTriggerTour }) => {
           <div>
             <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4">
               <div className="flex items-center space-x-2">
-                <SparklesIcon className="w-4.5 h-4.5 text-indigo-400" />
+                <SparklesIcon className="w-5 h-5 text-indigo-400" />
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-200">Gemini AI Executive Summary</h3>
               </div>
               <Badge variant="indigo">Confidence: 96%</Badge>
             </div>
-            <p className="text-zinc-400 text-xs leading-relaxed font-sans whitespace-pre-wrap max-h-40 overflow-y-auto pr-1">
-              {summary}
-            </p>
+            <div className="text-zinc-400 text-xs leading-relaxed font-sans max-h-40 overflow-y-auto pr-1 space-y-2">
+              {renderMarkdown(summary)}
+            </div>
           </div>
           <div className="mt-4 pt-3 border-t border-zinc-800 flex justify-between items-center text-[10px] text-zinc-500">
             <span>Powered by gemini-1.5-flash</span>
@@ -344,7 +344,7 @@ const Dashboard = ({ onTriggerTour }) => {
         {/* Dynamic Risk & Opportunities Cards */}
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 flex flex-col justify-between space-y-4">
           <div>
-            <h4 className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-3">Threat & Opportunity Map</h4>
+            <h4 className="text-[10px] uppercase font-bold tracking-wider text-zinc-500 mb-3">Risk & Opportunity Vectors</h4>
             <div className="space-y-2.5">
               {/* Risk */}
               <div className="bg-zinc-950 border border-zinc-800 p-2.5 rounded-lg flex items-start space-x-2.5">
@@ -386,8 +386,8 @@ const Dashboard = ({ onTriggerTour }) => {
       <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-lg">
         <div className="px-6 py-4 border-b border-zinc-800 flex justify-between items-center bg-zinc-950/20">
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-200">Ingested Stream Logs</h4>
-            <p className="text-[10px] text-zinc-500 mt-0.5">Feedback activities mapped chronological order.</p>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-200">Real-time Activity Logs</h4>
+            <p className="text-[10px] text-zinc-500 mt-0.5">Feedback stream ingestion mapped in chronological order.</p>
           </div>
           <Link to="/feedback" className="text-xs text-zinc-400 hover:text-zinc-200 flex items-center">
             Inspect Stream

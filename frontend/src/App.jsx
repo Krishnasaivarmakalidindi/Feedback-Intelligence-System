@@ -10,6 +10,7 @@ import AIInsights from './pages/AIInsights';
 import Settings from './pages/Settings';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
+import SandboxPage from './pages/SandboxPage';
 import NotFoundPage from './pages/NotFoundPage';
 import CommandPalette from './components/CommandPalette';
 import TourGuide from './components/TourGuide';
@@ -117,7 +118,7 @@ function AppLayout() {
   };
 
   // Determine if inside workspace pages (sidebar layout) vs outer landing/login pages
-  const isOuterPage = location.pathname === '/' || location.pathname === '/login';
+  const isOuterPage = location.pathname === '/' || location.pathname === '/login' || location.pathname === '/sandbox';
 
   if (isOuterPage) {
     return (
@@ -125,6 +126,7 @@ function AppLayout() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/sandbox" element={<SandboxPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <CommandPalette

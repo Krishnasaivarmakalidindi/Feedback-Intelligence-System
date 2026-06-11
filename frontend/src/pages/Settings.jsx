@@ -174,7 +174,7 @@ const Settings = () => {
         <Card className="flex flex-col justify-between h-36">
           <div className="flex justify-between items-start">
             <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500">API Server Node</span>
-            <ServerIcon className="w-4.5 h-4.5 text-zinc-500" />
+            <ServerIcon className="w-5 h-5 text-zinc-500" />
           </div>
           <div>
             <Badge variant={serverStatus.color}>{serverStatus.text}</Badge>
@@ -186,7 +186,7 @@ const Settings = () => {
         <Card className="flex flex-col justify-between h-36">
           <div className="flex justify-between items-start">
             <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500">SQLite Database</span>
-            <CircleStackIcon className="w-4.5 h-4.5 text-zinc-500" />
+            <CircleStackIcon className="w-5 h-5 text-zinc-500" />
           </div>
           <div>
             <Badge variant={dbStatus.color}>{dbStatus.text}</Badge>
@@ -200,7 +200,7 @@ const Settings = () => {
         <Card className="flex flex-col justify-between h-36">
           <div className="flex justify-between items-start">
             <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-500">Gemini AI Engine</span>
-            <CpuChipIcon className="w-4.5 h-4.5 text-zinc-500" />
+            <CpuChipIcon className="w-5 h-5 text-zinc-500" />
           </div>
           <div>
             <Badge variant={aiStatus.color}>{aiStatus.text}</Badge>

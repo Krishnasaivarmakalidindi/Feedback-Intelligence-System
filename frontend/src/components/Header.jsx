@@ -77,32 +77,39 @@ const Header = () => {
   }, [location.pathname]);
 
   const getStatusBadge = (type, state) => {
-    let color = 'bg-zinc-800 text-zinc-400';
+    let color = 'bg-zinc-900 text-zinc-400 border border-zinc-800';
     let dotColor = 'bg-zinc-600';
     let label = state;
 
     if (state === 'healthy' || state === 'connected' || state === 'active') {
-      color = 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+      color = 'bg-emerald-500/5 text-emerald-400 border border-emerald-500/20';
       dotColor = 'bg-emerald-500';
       label = state === 'healthy' ? 'Server: OK' : state === 'connected' ? 'DB: Connected' : 'AI: Active';
     } else if (state === 'checking') {
       color = 'bg-zinc-800/40 text-zinc-400 border border-zinc-800';
-      dotColor = 'bg-zinc-500 animate-pulse';
+      dotColor = 'bg-zinc-500';
       label = `Checking ${type}...`;
     } else if (state === 'missing_key') {
-      color = 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
+      color = 'bg-amber-500/5 text-amber-400 border border-amber-500/20';
       dotColor = 'bg-amber-500';
       label = 'AI: Key Missing';
     } else {
-      color = 'bg-rose-500/10 text-rose-400 border border-rose-500/20';
+      color = 'bg-rose-500/5 text-rose-400 border border-rose-500/20';
       dotColor = 'bg-rose-500';
       label = type === 'AI' ? 'AI: Error' : type === 'DB' ? 'DB: Offline' : 'Server: Offline';
     }
 
+    const isChecking = state === 'checking';
+
     return (
-      <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${color}`}>
-        <span className={`h-1.5 w-1.5 rounded-full ${dotColor} mr-1.5 inline-block ${state === 'checking' ? '' : 'animate-ping'}`} />
-        <span className="relative">{label}</span>
+      <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${color} transition-all duration-200 select-none`}>
+        <span className="relative flex h-1.5 w-1.5 mr-2">
+          {!isChecking && (
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${dotColor} opacity-75`} />
+          )}
+          <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${dotColor} ${isChecking ? 'animate-pulse' : ''}`} />
+        </span>
+        <span className="relative font-semibold tracking-wide">{label}</span>
       </span>
     );
   };

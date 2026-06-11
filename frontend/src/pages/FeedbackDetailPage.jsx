@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import client from '../api/client';
 import { getFeedbackById, updateFeedback, deleteFeedback } from '../api/feedback';
-import { Badge, Card, Button } from '../components/DesignSystem';
+import { Badge, Card, Button, renderMarkdown } from '../components/DesignSystem';
 import {
   ArrowLeftIcon,
   TrashIcon,
@@ -178,9 +178,9 @@ export const FeedbackDetailPage = () => {
               <SparklesIcon className="w-4 h-4 text-indigo-400" />
               <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-200">Gemini Ticket Analysis</h3>
             </div>
-            <p className="text-zinc-300 text-xs leading-relaxed">
-              {analysis?.analysis || 'Analyzing details...'}
-            </p>
+            <div className="text-zinc-300 text-xs leading-relaxed font-sans space-y-2">
+              {analysis?.analysis ? renderMarkdown(analysis.analysis) : 'Analyzing details...'}
+            </div>
           </Card>
 
           {/* Suggested Email Response */}
