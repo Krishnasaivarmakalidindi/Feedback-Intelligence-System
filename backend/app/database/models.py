@@ -19,5 +19,7 @@ class Feedback(Base):
 
     category = Column(String, default="general")
 
+    priority_score = Column(Integer, default=1, nullable=False)
+
     created_at = Column(DateTime, default=datetime.utcnow)
 
