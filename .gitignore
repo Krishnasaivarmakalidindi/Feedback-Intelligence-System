@@ -1,0 +1,28 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local SQLite databases
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Node dependencies
+node_modules/
+dist/
+.eslintcache
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
